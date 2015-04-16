@@ -163,7 +163,11 @@ class PyDocCommand(sublime_plugin.TextCommand):
         if 'returns' in self.autocomplete_parts:
             out.append('Returns: ' + docstr % (next(counter)))
         # append the closing tags
-        out.append('{}'.format(closingcomments))
+        #out.append('{}'.format("'''"))
         # Append the tabstops for the snipplet
-
-        return os.linesep.join(out)
+        result = ''
+        for str in out:
+            result += str + '\n'
+        result += "'''\n"
+        return result
+        #return os.linesep.join(out)
